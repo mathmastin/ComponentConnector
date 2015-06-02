@@ -12,10 +12,10 @@ def generate_l5s():
                 for i4 in digits:
                     for i5 in digits:
                         code = IntCode([i1,i2,i3,i4,i5])
-                        yield code
+                        yield code.hash()
 
-cluster = Cluster('10.104.251.45')
-setUp = ConnectorSetUp(cluster, nKeyspaces = 10)
+cluster = Cluster(['10.104.251.45'])
+setUp = ConnectorSetUp(cluster, nKeyspaces = 10, identifyKspc = IntCode.uidToKspc)
 setUp.connect()
-setUp.setUpKeyspaces()
-setUp.populateTable(generate_l5s)
+setUp.setUpKeyspaces(opts = [('replication_factor', 1)])
+setUp.populateTable(generate_l5s())

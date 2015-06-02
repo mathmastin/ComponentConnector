@@ -1,17 +1,6 @@
 class IntCode:
 
     @staticmethod
-    def generate_l5s():
-        digits = range(10)
-        for i1 in digits:
-            for i2 in digits:
-                for i3 in digits:
-                    for i4 in digits:
-                        for i5 in digits:
-                            code = IntCode([i1,i2,i3,i4,i5])
-                            yield code
-
-    @staticmethod
     def is_code_valid(code):
         for i in code.ints:
             if(i < 0 or i > 9):

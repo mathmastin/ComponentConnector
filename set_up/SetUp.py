@@ -3,7 +3,7 @@ class ConnectorSetUp:
     The class responsible for setting up the tables in the Cassandra database
     that will be used in the map & reduce steps later on.
 
-    The keyspaces created will be named by the form 'PREFIX-N', where PREFIX
+    The keyspaces created will be named by the form 'PREFIX_N', where PREFIX
     is specified in the constructor and N is an integer incrementing from 0.
 
     The basic useage of the class is:
@@ -28,7 +28,7 @@ class ConnectorSetUp:
                 Defaults to 'Connector'.
         """
         self.cluster = cluster
-        self.keyspaceNames = [keyspacePrefix + '-' + `i` for i in range(nKeyspaces)]
+        self.keyspaceNames = [keyspacePrefix + '_' + `i` for i in range(nKeyspaces)]
         self.identifyKspc = identifyKspc
 
     def connect(self):
@@ -38,8 +38,7 @@ class ConnectorSetUp:
         self.session = self.cluster.connect()
 
     #TODO: Isolate all specific database bits to helper functions?
-    #TODO: Use asynchronous queries
-    def setUpKeyspaces(self, strategyClass = 'SimpleStrategy', *args):
+    def setUpKeyspaces(self, strategyClass = 'SimpleStrategy', opts = []):
         """
         Create the necessary keyspaces & tables with the given strategy options.
         All keyspaces use the same strategies. See the CQL documentation for
@@ -47,29 +46,29 @@ class ConnectorSetUp:
 
         Args:
             strategyClass (string, optional): Defaults to 'SimpleStrategy'.
-            *args: Variable length list of tuples (strategy name (string), strategy val (string)).
+            opts: Variable length list of tuples (strategy name (string), strategy val (string)).
         """
         for kspcName in self.keyspaceNames:
             # Create the keyspace
-            query = "CREATE KEYSPACE %(kspcName)s WITH strategy_class = \'%(strategyClass)s\'" % locals()
-            for opt in args:
+            query = "CREATE KEYSPACE IF NOT EXISTS %(kspcName)s WITH replication = { 'class': \'%(strategyClass)s\'" % locals()
+            for opt in opts:
                 optName = opt[0]
                 optVal = opt[1]
-                query += " AND strategy_options:%(optName)s = %(optVal)s" % locals()
-            query += ';'
+                query += ", \'%(optName)s\': \'%(optVal)s\'" % locals()
+            query += '};'
             self.session.execute(query)
             # Create the table
             #TODO: Uid type?
-            query = """CREATE TABLE %(kspcName)s.cmpTable (
+            query = """CREATE TABLE IF NOT EXISTS %(kspcName)s.cmpTable (
                         uid varchar,
                         cmp list<int>,
                         mapped boolean,
-                        PRIMARY KEY (uid, cmp)
-                    );"""
+                        PRIMARY KEY (uid)
+                    );""" % locals()
+            #TODO: Can't use cmp list as primary key. Sort by somehow?
             #TODO: Use cluster ordering on this table?
             self.session.execute(query)
 
-    #TODO: Use asynchronous queries
     def populateTable(self, uidGenerator):
         """
         Populate the cmpTable's with uid's, cmp numbers, and a false mapped value.
@@ -79,5 +78,9 @@ class ConnectorSetUp:
         currentCmp = 0
         for uid in uidGenerator:
             kspcName = self.keyspaceNames[self.identifyKspc(uid)]
-            query = "INSERT INTO %(kspcName)s.cmpTable (uid, cmp, mapped) VALUES (%(uid)s, %(currentCmp)s, false)" % locals()
-            self.session.execute(query)
+            query = "INSERT INTO %(kspcName)s.cmpTable (uid, cmp, mapped) VALUES (\'%(uid)s\', [%(currentCmp)s], false)" % locals()
+            if currentCmp % 1000 == 0:
+                print query
+            #Note, we use asynchronous queries for this.
+            self.session.execute_async(query)
+            currentCmp += 1
