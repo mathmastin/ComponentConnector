@@ -1,0 +1,19 @@
+[0m[[0minfo[0m] [0mRunning connector.MyApp [0m
+[0m[[0mdebug[0m] [0mWaiting for threads to exit or System.exit to be called.[0m
+[0m[[0mdebug[0m] [0m  Classpath:[0m
+[0m[[0mdebug[0m] [0m	/home/bilboswaggins/ComponentConnector/connector/target/scala-2.11/classes[0m
+[0m[[0mdebug[0m] [0m	/home/bilboswaggins/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.6.jar[0m
+[0m[[0mdebug[0m] [0m	/home/bilboswaggins/.ivy2/cache/com.datastax.cassandra/cassandra-driver-core/bundles/cassandra-driver-core-2.1.6.jar[0m
+[0m[[0mdebug[0m] [0m	/home/bilboswaggins/.ivy2/cache/io.netty/netty-handler/jars/netty-handler-4.0.27.Final.jar[0m
+[0m[[0mdebug[0m] [0m	/home/bilboswaggins/.ivy2/cache/io.netty/netty-buffer/jars/netty-buffer-4.0.27.Final.jar[0m
+[0m[[0mdebug[0m] [0m	/home/bilboswaggins/.ivy2/cache/io.netty/netty-common/jars/netty-common-4.0.27.Final.jar[0m
+[0m[[0mdebug[0m] [0m	/home/bilboswaggins/.ivy2/cache/io.netty/netty-transport/jars/netty-transport-4.0.27.Final.jar[0m
+[0m[[0mdebug[0m] [0m	/home/bilboswaggins/.ivy2/cache/io.netty/netty-codec/jars/netty-codec-4.0.27.Final.jar[0m
+[0m[[0mdebug[0m] [0m	/home/bilboswaggins/.ivy2/cache/com.google.guava/guava/bundles/guava-14.0.1.jar[0m
+[0m[[0mdebug[0m] [0m	/home/bilboswaggins/.ivy2/cache/com.codahale.metrics/metrics-core/bundles/metrics-core-3.0.2.jar[0m
+[0m[[0mdebug[0m] [0m	/home/bilboswaggins/.ivy2/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.7.5.jar[0m
+[0m[[0mdebug[0m] [0mWaiting for thread run-main-0 to terminate.[0m
+[0m[[0mdebug[0m] [0m	Thread run-main-0 exited.[0m
+[0m[[0mdebug[0m] [0mInterrupting remaining threads (should be all daemons).[0m
+[0m[[0mdebug[0m] [0mSandboxed run complete..[0m
+[0m[[0mdebug[0m] [0mExited with code 0[0m

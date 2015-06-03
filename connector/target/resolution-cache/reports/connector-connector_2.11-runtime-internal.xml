@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="connector"
+		module="connector_2.11"
+		revision="0.1-SNAPSHOT"
+		conf="runtime-internal"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
+		date="20150603165703"/>
+	<dependencies>
+		<module organisation="com.datastax.cassandra" name="cassandra-driver-core">
+			<revision name="2.1.6" status="release" pubdate="20150520060933" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/datastax/java-driver" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="1">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="6830" time="0" location="/home/bilboswaggins/.ivy2/cache/com.datastax.cassandra/cassandra-driver-core/ivy-2.1.6.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/datastax/cassandra/cassandra-driver-core/2.1.6/cassandra-driver-core-2.1.6.pom"/>
+				<caller organisation="connector" name="connector_2.11" conf="optional, compile, runtime, runtime-internal" rev="2.1.6" rev-constraint-default="2.1.6" rev-constraint-dynamic="2.1.6" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="cassandra-driver-core" type="bundle" ext="jar" status="no" details="" size="805794" time="0" location="/home/bilboswaggins/.ivy2/cache/com.datastax.cassandra/cassandra-driver-core/bundles/cassandra-driver-core-2.1.6.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/datastax/cassandra/cassandra-driver-core/2.1.6/cassandra-driver-core-2.1.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.codahale.metrics" name="metrics-core">
+			<revision name="3.0.2" status="release" pubdate="20140216193139" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="8">
+				<metadata-artifact status="no" details="" size="4636" time="0" location="/home/bilboswaggins/.ivy2/cache/com.codahale.metrics/metrics-core/ivy-3.0.2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/codahale/metrics/metrics-core/3.0.2/metrics-core-3.0.2.pom"/>
+				<caller organisation="com.datastax.cassandra" name="cassandra-driver-core" conf="default, compile, runtime, master" rev="3.0.2" rev-constraint-default="3.0.2" rev-constraint-dynamic="3.0.2" callerrev="2.1.6"/>
+				<artifacts>
+					<artifact name="metrics-core" type="bundle" ext="jar" status="no" details="" size="85448" time="0" location="/home/bilboswaggins/.ivy2/cache/com.codahale.metrics/metrics-core/bundles/metrics-core-3.0.2.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/codahale/metrics/metrics-core/3.0.2/metrics-core-3.0.2.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.google.guava" name="guava">
+			<revision name="14.0.1" status="release" pubdate="20130314195719" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="7">
+				<metadata-artifact status="no" details="" size="3663" time="0" location="/home/bilboswaggins/.ivy2/cache/com.google.guava/guava/ivy-14.0.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/google/guava/guava/14.0.1/guava-14.0.1.pom"/>
+				<caller organisation="com.datastax.cassandra" name="cassandra-driver-core" conf="default, compile, runtime, master" rev="14.0.1" rev-constraint-default="14.0.1" rev-constraint-dynamic="14.0.1" callerrev="2.1.6"/>
+				<artifacts>
+					<artifact name="guava" type="bundle" ext="jar" status="no" details="" size="2189117" time="0" location="/home/bilboswaggins/.ivy2/cache/com.google.guava/guava/bundles/guava-14.0.1.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/google/guava/guava/14.0.1/guava-14.0.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.netty" name="netty-handler">
+			<revision name="4.0.27.Final" status="release" pubdate="20150402121008" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="2">
+				<metadata-artifact status="no" details="" size="16261" time="0" location="/home/bilboswaggins/.ivy2/cache/io.netty/netty-handler/ivy-4.0.27.Final.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/io/netty/netty-handler/4.0.27.Final/netty-handler-4.0.27.Final.pom"/>
+				<caller organisation="com.datastax.cassandra" name="cassandra-driver-core" conf="default, compile, runtime, master" rev="4.0.27.Final" rev-constraint-default="4.0.27.Final" rev-constraint-dynamic="4.0.27.Final" callerrev="2.1.6"/>
+				<artifacts>
+					<artifact name="netty-handler" type="jar" ext="jar" status="no" details="" size="238957" time="0" location="/home/bilboswaggins/.ivy2/cache/io.netty/netty-handler/jars/netty-handler-4.0.27.Final.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/io/netty/netty-handler/4.0.27.Final/netty-handler-4.0.27.Final.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.netty" name="netty-codec">
+			<revision name="4.0.27.Final" status="release" pubdate="20150402120944" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="6">
+				<metadata-artifact status="no" details="" size="15659" time="0" location="/home/bilboswaggins/.ivy2/cache/io.netty/netty-codec/ivy-4.0.27.Final.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/io/netty/netty-codec/4.0.27.Final/netty-codec-4.0.27.Final.pom"/>
+				<caller organisation="io.netty" name="netty-handler" conf="compile, runtime" rev="4.0.27.Final" rev-constraint-default="4.0.27.Final" rev-constraint-dynamic="4.0.27.Final" callerrev="4.0.27.Final"/>
+				<artifacts>
+					<artifact name="netty-codec" type="jar" ext="jar" status="no" details="" size="143916" time="0" location="/home/bilboswaggins/.ivy2/cache/io.netty/netty-codec/jars/netty-codec-4.0.27.Final.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/io/netty/netty-codec/4.0.27.Final/netty-codec-4.0.27.Final.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.netty" name="netty-transport">
+			<revision name="4.0.27.Final" status="release" pubdate="20150402120919" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="5">
+				<metadata-artifact status="no" details="" size="14986" time="0" location="/home/bilboswaggins/.ivy2/cache/io.netty/netty-transport/ivy-4.0.27.Final.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/io/netty/netty-transport/4.0.27.Final/netty-transport-4.0.27.Final.pom"/>
+				<caller organisation="io.netty" name="netty-handler" conf="compile, runtime" rev="4.0.27.Final" rev-constraint-default="4.0.27.Final" rev-constraint-dynamic="4.0.27.Final" callerrev="4.0.27.Final"/>
+				<caller organisation="io.netty" name="netty-codec" conf="compile, runtime" rev="4.0.27.Final" rev-constraint-default="4.0.27.Final" rev-constraint-dynamic="4.0.27.Final" callerrev="4.0.27.Final"/>
+				<artifacts>
+					<artifact name="netty-transport" type="jar" ext="jar" status="no" details="" size="316806" time="0" location="/home/bilboswaggins/.ivy2/cache/io.netty/netty-transport/jars/netty-transport-4.0.27.Final.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/io/netty/netty-transport/4.0.27.Final/netty-transport-4.0.27.Final.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.netty" name="netty-buffer">
+			<revision name="4.0.27.Final" status="release" pubdate="20150402120813" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="3">
+				<metadata-artifact status="no" details="" size="14980" time="0" location="/home/bilboswaggins/.ivy2/cache/io.netty/netty-buffer/ivy-4.0.27.Final.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/io/netty/netty-buffer/4.0.27.Final/netty-buffer-4.0.27.Final.pom"/>
+				<caller organisation="io.netty" name="netty-transport" conf="compile, runtime" rev="4.0.27.Final" rev-constraint-default="4.0.27.Final" rev-constraint-dynamic="4.0.27.Final" callerrev="4.0.27.Final"/>
+				<caller organisation="io.netty" name="netty-handler" conf="compile, runtime" rev="4.0.27.Final" rev-constraint-default="4.0.27.Final" rev-constraint-dynamic="4.0.27.Final" callerrev="4.0.27.Final"/>
+				<artifacts>
+					<artifact name="netty-buffer" type="jar" ext="jar" status="no" details="" size="167898" time="0" location="/home/bilboswaggins/.ivy2/cache/io.netty/netty-buffer/jars/netty-buffer-4.0.27.Final.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/io/netty/netty-buffer/4.0.27.Final/netty-buffer-4.0.27.Final.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.netty" name="netty-common">
+			<revision name="4.0.27.Final" status="release" pubdate="20150402120740" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="4">
+				<metadata-artifact status="no" details="" size="13320" time="0" location="/home/bilboswaggins/.ivy2/cache/io.netty/netty-common/ivy-4.0.27.Final.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/io/netty/netty-common/4.0.27.Final/netty-common-4.0.27.Final.pom"/>
+				<caller organisation="io.netty" name="netty-buffer" conf="compile, runtime" rev="4.0.27.Final" rev-constraint-default="4.0.27.Final" rev-constraint-dynamic="4.0.27.Final" callerrev="4.0.27.Final"/>
+				<artifacts>
+					<artifact name="netty-common" type="jar" ext="jar" status="no" details="" size="420854" time="0" location="/home/bilboswaggins/.ivy2/cache/io.netty/netty-common/jars/netty-common-4.0.27.Final.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/io/netty/netty-common/4.0.27.Final/netty-common-4.0.27.Final.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.slf4j" name="slf4j-api">
+			<revision name="1.7.5" status="release" pubdate="20130325165215" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.slf4j.org" downloaded="false" searched="false" default="false" conf="compile, runtime, compile(*), runtime(*), master(compile), master" position="9">
+				<metadata-artifact status="no" details="" size="4475" time="0" location="/home/bilboswaggins/.ivy2/cache/org.slf4j/slf4j-api/ivy-1.7.5.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.pom"/>
+				<caller organisation="com.codahale.metrics" name="metrics-core" conf="compile, runtime" rev="1.7.5" rev-constraint-default="1.7.5" rev-constraint-dynamic="1.7.5" callerrev="3.0.2"/>
+				<artifacts>
+					<artifact name="slf4j-api" type="jar" ext="jar" status="no" details="" size="26084" time="0" location="/home/bilboswaggins/.ivy2/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.7.5.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.5/slf4j-api-1.7.5.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="2.11.6" status="release" pubdate="20150225200105" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.11.6/" downloaded="false" searched="false" default="false" conf="default(compile), default, compile, runtime, master" position="0">
+				<license name="BSD 3-Clause" url="http://www.scala-lang.org/license.html"/>
+				<metadata-artifact status="no" details="" size="2653" time="0" location="/home/bilboswaggins/.ivy2/cache/org.scala-lang/scala-library/ivy-2.11.6.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.11.6/scala-library-2.11.6.pom"/>
+				<caller organisation="connector" name="connector_2.11" conf="optional, compile, runtime, runtime-internal" rev="2.11.6" rev-constraint-default="2.11.6" rev-constraint-dynamic="2.11.6" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="scala-library" type="jar" ext="jar" status="no" details="" size="5564007" time="0" location="/home/bilboswaggins/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.6.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/scala-lang/scala-library/2.11.6/scala-library-2.11.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>
