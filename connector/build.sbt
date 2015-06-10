@@ -11,3 +11,5 @@ lazy val root = (project in file(".")).
 		libraryDependencies += datastax,
 		mainClass := Some("MyApp")
 	)
+
+

@@ -1,3 +1,4 @@
 connector/target/
-connector/project/
+connector/project/target/
+connector/project/project/target/
 connector/lib/
