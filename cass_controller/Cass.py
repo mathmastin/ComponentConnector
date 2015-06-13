@@ -7,7 +7,10 @@ class CassController(object):
     """Controller for interacting with a cassandra database."""
 
     def __init__(self, hosts=None, keyspace=None):
-        """Connects to the cluster at hosts and accesses keyspace if provided"""
+        """Connects to the cluster at hosts and accesses keyspace if provided
+
+        hosts will default to localhost
+        """
         if not hosts:
             hosts = ['localhost']
         self.cluster = Cluster(hosts)
