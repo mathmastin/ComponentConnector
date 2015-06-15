@@ -1,5 +1,0 @@
-package connector
-
-object MyApp extends App {
-       println "HELLO"
-}
