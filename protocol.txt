@@ -1,0 +1,22 @@
+Two types of messages: Data messages and Control messages.
+
+Control messages begin with a 'c' character. Data messages have no special
+markers.
+
+Data Messages:
+Only used to transmit edge data from the Python nodes to the Scala controller.
+Format - "UID1 UID2;UID3 UID4;UID5 UID6; ... ;UIDY UIDZ"
+Signifies that there is an edge connecting vertices with UID1 & UID2,
+UID3 & UID4, UID5 & UID6, etc. Since the UID's should not contain any spaces
+or semicolons, the string should be able to be parsed by using simple splitting.
+
+Control messages:
+A particular control message is serialized as "cN", where N is an integer
+representing the particular message. This allows the program to easily check
+whether a message is a control or data message.
+1 - Start listening for edges (Python -> Scala).
+2 - Finished current round of edge mapping, begin connected
+		component calculation (Python -> Scala).
+3 - Connected components have been written to database, begin next round of edge
+		calculations (Scala -> Python).
+4 - Finished, shutdown (Python -> Scala).
