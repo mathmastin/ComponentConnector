@@ -76,6 +76,7 @@ class SansData extends FlatSpec with MustMatchers with MockitoSugar {
 		controller ! Shutdown
 		
 		/// Now verify!
+		// The controller should respond to the stream source.
 		verify(writerMock).print("c3")
 		
 		val ccs = ccWriter.ccs.get.collect.foldRight(Map[Long, Long]()) { (tup, mp) => mp + tup}
@@ -94,5 +95,9 @@ class SansData extends FlatSpec with MustMatchers with MockitoSugar {
 		ccs(2) mustEqual ccs(7)
 		ccs(2) mustEqual ccs(10)
 		ccs(8) mustEqual ccs(9)
+		
+		ccs(1) mustNot equal(ccs(2))
+		ccs(1) mustNot equal(ccs(8))
+		ccs(2) mustNot equal(ccs(8))
 	}
 }
