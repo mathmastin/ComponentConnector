@@ -7,7 +7,8 @@ import org.apache.spark.graphx.impl.GraphImpl
 
 sealed abstract trait EdgeRddBuilderMessage
 case object Reset extends EdgeRddBuilderMessage
-case class AddEdge[Int](edge: Edge[Int]) extends EdgeRddBuilderMessage
+case class AddEdge(edge: Edge[Nothing]) extends EdgeRddBuilderMessage
+case class AddEdges(edges: List[Edge[Nothing]]) extends EdgeRddBuilderMessage
 case object RequestGraph extends EdgeRddBuilderMessage
 
 /** An Akka actor that builds an EdgeRDD from edge objects.
@@ -18,23 +19,22 @@ case object RequestGraph extends EdgeRddBuilderMessage
  *  @param sc The spark context 
  */
 class EdgeRddBuilder(sc: SparkContext) extends Actor {
-	private var edges: EdgeRDD[Int] = newEdgeRDD
+	private var edges: EdgeRDD[Nothing] = newEdgeRDD
 
 	/** Constructs an empty EdgeRDD. */
-	private def newEdgeRDD() = EdgeRDD.fromEdges(sc.parallelize(Array[Edge[Int]]()))
+	private def newEdgeRDD() = EdgeRDD.fromEdges[Nothing, Int](sc.parallelize(Array[Edge[Nothing]]()))
 	
 	/*** Implement the messages ***/
 	private def reset() { 
 		edges = newEdgeRDD 
 	}
-	private def addEdge(edge: Edge[Any]) {
-		//TODO: Find some way to avoid this horrible type casting?
-		val newRdd: EdgeRDD[Int] = EdgeRDD.fromEdges[Int, Int](sc.parallelize(List(edge.asInstanceOf[Edge[Int]])))
-		edges = EdgeRDD.fromEdges(edges.union(newRdd))
+	private def addEdge(edge: Edge[Nothing]) {
+		val newRdd = EdgeRDD.fromEdges[Nothing, Int](sc.parallelize(List(edge)))
+		edges = EdgeRDD.fromEdges[Nothing, Int](edges.union(newRdd))
 	}
 	private def requestGraph(sender: ActorRef) {
-		val verts = VertexRDD.fromEdges(edges, 1, 0)
-		val graph = GraphImpl.fromExistingRDDs(verts, edges)
+		val verts = VertexRDD.fromEdges[Int](edges, 1, 0).asInstanceOf[VertexRDD[Nothing]]
+		val graph = GraphImpl.fromExistingRDDs[Nothing, Nothing](verts, edges)
 		sender ! SendGraph(graph)
 	}
 

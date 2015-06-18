@@ -39,7 +39,7 @@ object MyApp {
     println(cc.collect().mkString("\n"))
 
     sc.stop()*/
-    
+	
     /// Set up spark ///
 	// Create the spark context
     val conf = new SparkConf()

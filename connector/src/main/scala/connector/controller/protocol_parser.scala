@@ -4,7 +4,7 @@ import org.apache.spark.graphx.Edge
 
 class PyScMessageException(msg: String) extends RuntimeException(msg)
 
-/** Factory for [[connector.controller.PyScMessage] instances. */
+/** Factory for [[connector.controller.PyScMessage]] instances. */
 object PyScMessage {
 	def parse(str: String): PyScMessage = {
 		// If the message starts with a 'c', it's a control message.
