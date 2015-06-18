@@ -20,10 +20,10 @@ object PyScMessage {
 		} 
 		// Otherwise, it's a data message.
 		else {
-			var edges: List[Edge[Int]] = List()
+			var edges: List[Edge[Nothing]] = List()
 			for(pair <- str.split(";")) {
 				val ids = pair.split(" ")
-				edges = edges :+ Edge(ids(0).toLong, ids(1).toLong, 0) //TODO: Make this return edge type Nothing
+				edges = edges :+ Edge(ids(0).toLong, ids(1).toLong) //TODO: Make this return edge type Nothing
 			}
 			DataMessage(edges)
 		}
@@ -43,7 +43,7 @@ case object ListenForEdges extends ControlMessage { val serialN = 1 }
 case object FinishedMapping extends ControlMessage { val serialN = 2 }
 case object CCsWritten extends ControlMessage { val serialN = 3 }
 case object Shutdown extends ControlMessage {val serialN = 4 }
-case class DataMessage(val edges: List[Edge[Int]]) extends PyScMessage {
+case class DataMessage(val edges: List[Edge[Nothing]]) extends PyScMessage {
 	override def toString = {
 		var str = ""
 		for(i <- 0 until edges.length) {

@@ -4,6 +4,7 @@ import akka.actor.{Actor, ActorRef}
 import org.apache.spark._
 import org.apache.spark.graphx._
 import org.apache.spark.graphx.impl.GraphImpl
+import connector.logger.Logger
 
 sealed abstract trait EdgeRddBuilderMessage
 case object Reset extends EdgeRddBuilderMessage
@@ -29,6 +30,7 @@ class EdgeRddBuilder(sc: SparkContext) extends Actor {
 		edges = newEdgeRDD 
 	}
 	private def addEdge(edge: Edge[Nothing]) {
+		Logger("Addig edge: " + edge.toString)
 		val newRdd = EdgeRDD.fromEdges[Nothing, Int](sc.parallelize(List(edge)))
 		edges = EdgeRDD.fromEdges[Nothing, Int](edges.union(newRdd))
 	}
@@ -41,6 +43,7 @@ class EdgeRddBuilder(sc: SparkContext) extends Actor {
 	def receive = {
 		case Reset => edges = newEdgeRDD
 		case AddEdge(edge) => addEdge(edge)
+		case AddEdges(edges) => edges foreach (addEdge(_))
 		case RequestGraph => requestGraph(sender)
 	}
 }

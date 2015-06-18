@@ -7,6 +7,7 @@ import org.apache.spark.rdd.RDD
 import akka.actor._
 import connector.controller.Controller
 import connector.controller.ReadFromFile
+import connector.controller.CassandraWriter
 
 object MyApp {
   def main(args: Array[String]) {
@@ -53,7 +54,7 @@ object MyApp {
     /// Start the problem ///
     val dataFile = "data/followers.txt"
     
-   	val controller = system.actorOf(Props(new Controller(system, sc)), "controller")   
+   	val controller = system.actorOf(Props(new Controller(system, sc, new CassandraWriter)), "controller")   
    	
    	controller ! ReadFromFile(dataFile)
    	
