@@ -3,3 +3,5 @@ connector/project/target/
 connector/project/project/target/
 connector/lib/
 connector/bin/
+.idea/
+

@@ -42,3 +42,14 @@ class IntCode:
                     if(IntCode.is_code_valid(new_code)):
                         nghbrs.append(nghbr)
         return nghbrs
+
+    def neighborsgen(self):
+        for x in range(len(self.ints)):
+            for y in range(len(self.ints)):
+                if x != y:
+                    nghbr = list(self.ints)
+                    nghbr[x] += 1
+                    nghbr[y] -= 1
+                    new_code = IntCode(nghbr)
+                    if(IntCode.is_code_valid(new_code)):
+                        yield nghbr
