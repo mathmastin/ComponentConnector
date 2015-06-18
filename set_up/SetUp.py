@@ -13,7 +13,7 @@ class ConnectorSetUp:
     4. Populate the tables.
     """
 
-    def __init__(self, cluster, nKeyspaces, identifyKspc, keyspacePrefix = 'Connector'):
+    def __init__(self, cluster, nKeyspaces, identifyKspc, keyspacePrefix = 'connector'):
         """
         Store the cluster object, but don't connect to it yet.
 
