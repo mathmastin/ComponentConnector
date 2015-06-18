@@ -41,29 +41,19 @@ class IntKeyspace(Cass.CassController):
         # if the generator is used.
         self.usekeyspace(self.keyspace)
 
+        #yield self.query(cqlstatement)
         results = self.query(cqlstatement)
         for i in results:
-            # The query yields a unicode version of the digits, so we must format and cast
-            # to a list of ints to send to the constructor of NumString
+            yield IntCode.IntCode(map(int,i.uid))
 
-            pass # this needs to cast the elements in results to IntCodes and
-                 # return a generator into that list
+    def getnhbs(self, intcode):
+        """Returns generator into list of neighbors of IntCodes in the IntCode graph
 
-    def getnhbs(self, numstring):
-        """Returns generator into list of neighbors of numstring in the NumString graph
-
-        Two NumStrings are neighbors if one can be obtained from the other
+        Two IntCodes are neighbors if one can be obtained from the other
         by adding 1 to some integer in the string and subtracting 1 from another
         """
+        nhbsgen = intcode.neighborsgen()
 
-        pass # This needs to use Jason's nhbr code to query the DB and return generator into the nhbs
-
-    def dumpsubgraph(self, vertlist = None):
-        """Dumps neighbor subgraph corresponding to the vertices in vertlist
-        to file for processing by Graphx"""
-        pass
-
-    def updatecomps(self):
-        """Reads connected component data from Graphx generated file
-        and update component information in the NumString keyspace"""
-        pass
+        for i in nhbsgen:
+            yield self.intquery("SELECT * FROM cmptable WHERE uid "
+                                "= '{!s}'".format(''.join(str(i[x]) for x in range(0,len(i)))))
