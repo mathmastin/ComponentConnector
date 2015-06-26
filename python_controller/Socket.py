@@ -41,6 +41,6 @@ while True:
 
     finally:
         # Clean up the connection
-        # print message
+        print message
         connection.close()
 

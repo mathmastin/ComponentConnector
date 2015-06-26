@@ -5,6 +5,8 @@ MESSAGES = {'startEdge':'c1',
             'cmpsWritten':'c3',
             'finished':'c4'}
 
+NUMVERTS = 100000
+
 import socket
 import sys
 import os
@@ -20,8 +22,16 @@ import IntCode
 import Cass
 
 
-def send_edges(sock,vertex):
+def send_edges(vertex):
     '''Sends the edges of vertex through the socket sock'''
+
+    # Create a TCP/IP socket
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_address = ('localhost', 9998)
+    print >>sys.stderr, 'connecting to %s port %s' % server_address
+
+    # Connect the socket to the port where the server is listening
+    sock.connect(server_address)
 
     nbsgen = vertex.neighborsgen()
 
@@ -34,7 +44,7 @@ def send_edges(sock,vertex):
 
     message = ';'.join(edges)  + '#'
 
-    print message
+    #print message
 
     try:
 
@@ -63,7 +73,13 @@ def get_vertices(n):
             uid.append(random.randint(0,9))
             numints += 1
 
-        thisvert = DBcon.query("SELECT * FROM connector_{!s}.cmptable WHERE uid='{!s}'".format(str(uid[0]),''.join(str(uid[x]) for x in range(0,5))))
+        thisvert = DBcon.query("SELECT * FROM connector_{!s}.cmptable WHERE uid='{!s}'".
+                               format(str(uid[0]),''.join(str(uid[x]) for x in range(0,5))))
+
+        DBcon.query("UPDATE connector_{!s}.cmptable SET mapped = true WHERE uid='{!s}'".
+                    format(str(uid[0]),''.join(str(uid[x]) for x in range(0,5))))
+
+        #print "UPDATE connector_{!s}.cmptable SET mapped='true' WHERE uid='{!s}'".format(str(uid[0]),''.join(str(uid[x]) for x in range(0,5)))
 
         for i in thisvert:
             if not i.mapped:
@@ -72,22 +88,16 @@ def get_vertices(n):
 
     return verts
 
-#CLIENT CODE
+##################################### CLIENT CODE #####################################
 
-# Create a TCP/IP socket
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+nummapped = 0
 
-# Connect the socket to the port where the server is listening
-#server_address = ('localhost', 9998)
-#print >>sys.stderr, 'connecting to %s port %s' % server_address
-#sock.connect(server_address)
+while nummapped < NUMVERTS:
+    rawverts = get_vertices(10)
 
-test = IntCode.IntCode([1,2,3,4,5])
+    verts = []
 
-print get_vertices(5)
+    for i in rawverts:
+        send_edges(IntCode.IntCode(i))
 
-#send_edges(sock,test)
-
-#test = IntCode.IntCode([1,2,3,4])
-#send_edges(sock,test)
-
+    nummapped += 10
