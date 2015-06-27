@@ -4,6 +4,7 @@ from SetUp import *
 from IntCode import *
 from cassandra.cluster import Cluster
 
+
 def generate_l5s():
     digits = range(10)
     for i1 in digits:
